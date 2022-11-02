@@ -19,6 +19,20 @@ public class XRGrabInteractableTwoAttach : XRGrabInteractable
             attachTransform = rightAttachTransform;
         }
 
+        BoxCollider collider = gameObject.GetComponent<BoxCollider>();
+        collider.isTrigger = true;
+
+
+        
+
         base.OnSelectEntered(args);
     }
+
+    protected override void OnSelectExiting(SelectExitEventArgs args)
+    {
+        BoxCollider collider = gameObject.GetComponent<BoxCollider>();
+        collider.isTrigger = true;
+        base.OnSelectExiting(args);
+    }
+
 }

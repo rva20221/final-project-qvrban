@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -151,9 +151,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81171191}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.3283064e-10, y: -2.3283064e-10, z: 0}
+  m_LocalScale: {x: 1.0000002, y: 1.0000002, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 186987902}
@@ -3563,7 +3563,7 @@ MonoBehaviour:
   m_EnableInputActions: 1
   m_ModelPrefab: {fileID: 0}
   m_ModelParent: {fileID: 0}
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 1935417515}
   m_AnimateModel: 0
   m_ModelSelectTransition: 
   m_ModelDeSelectTransition: 
@@ -3849,6 +3849,7 @@ GameObject:
   - component: {fileID: 998931119}
   - component: {fileID: 998931120}
   - component: {fileID: 998931121}
+  - component: {fileID: 998931122}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -3946,7 +3947,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5cacb76cba02543ac5277e19a4100d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSliceMaterial: {fileID: 0}
+  defaultSliceMaterial: {fileID: 2100000, guid: c3c8b2e7507849f43a31e15b9d7c3dc2,
+    type: 2}
   asynchronously: 1
   useLazyRunner: 0
   _sliceId: 0
@@ -3976,6 +3978,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b31ce38a2694587bc429b0e6274a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &998931122
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998931114}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1072747576
 GameObject:
   m_ObjectHideFlags: 0
@@ -4658,14 +4676,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447029673}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.89, y: -3.28, z: 0}
+  m_LocalRotation: {x: -0.18325116, y: 0.6829488, z: 0.18325116, w: 0.6829488}
+  m_LocalPosition: {x: 1.26, y: -2.63, z: -0.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8914438127566723946}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -30.04, y: 90, z: 0}
 --- !u!1 &1467130801
 GameObject:
   m_ObjectHideFlags: 0
@@ -4730,7 +4748,7 @@ MonoBehaviour:
   m_EnableInputActions: 1
   m_ModelPrefab: {fileID: 0}
   m_ModelParent: {fileID: 0}
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 258606647}
   m_AnimateModel: 0
   m_ModelSelectTransition: 
   m_ModelDeSelectTransition: 
@@ -5235,14 +5253,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657159938}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.89, y: -3.28, z: 0}
+  m_LocalRotation: {x: -0.18325116, y: 0.6829488, z: 0.18325116, w: 0.6829488}
+  m_LocalPosition: {x: 1.26, y: -2.63, z: 0.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8914438127566723946}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -30.04, y: 90, z: 0}
 --- !u!1 &1664819476
 GameObject:
   m_ObjectHideFlags: 0
@@ -6678,7 +6696,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8141842456139284944}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.9619405, y: 16.156187, z: 1.8963333}
@@ -6808,8 +6826,8 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  leftAttachTransform: {fileID: 1657159939}
-  rightAttachTransform: {fileID: 1447029674}
+  leftAttachTransform: {fileID: 1447029674}
+  rightAttachTransform: {fileID: 1657159939}
 --- !u!114 &8914438127566723952
 MonoBehaviour:
   m_ObjectHideFlags: 0
