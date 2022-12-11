@@ -21,7 +21,7 @@ namespace BzKovSoft.ObjectSlicer.Samples
 		void OnTriggerEnter(Collider other)
 		{
 			var knife = other.gameObject.GetComponent<BzKnife>();
-			if (knife == null)
+			if (knife == null || !knife.enabled)
 				return;
 
 			StartCoroutine(Slice(knife));

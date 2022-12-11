@@ -22,16 +22,13 @@ public class XRGrabInteractableTwoAttach : XRGrabInteractable
         BoxCollider collider = gameObject.GetComponent<BoxCollider>();
         collider.isTrigger = true;
 
-
-        
-
         base.OnSelectEntered(args);
     }
 
     protected override void OnSelectExiting(SelectExitEventArgs args)
     {
         BoxCollider collider = gameObject.GetComponent<BoxCollider>();
-        collider.isTrigger = true;
+        collider.isTrigger = false;
         base.OnSelectExiting(args);
     }
 
