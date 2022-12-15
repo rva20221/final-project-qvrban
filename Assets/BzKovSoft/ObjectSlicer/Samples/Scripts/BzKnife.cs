@@ -17,7 +17,7 @@ namespace BzKovSoft.ObjectSlicer.Samples
 		[SerializeField]
 		private Vector3 _direction = Vector3.up;
 
-		private void Update()
+		private void FixedUpdate()
 		{
 			_prevPos = _pos;
 			_pos = transform.position;

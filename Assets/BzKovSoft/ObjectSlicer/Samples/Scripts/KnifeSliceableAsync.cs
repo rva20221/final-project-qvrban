@@ -18,16 +18,16 @@ namespace BzKovSoft.ObjectSlicer.Samples
 			_sliceableAsync = GetComponentInParent<IBzSliceableNoRepeat>();
 		}
 
-		void OnTriggerEnter(Collider other)
+		protected virtual void OnTriggerEnter(Collider other)
 		{
 			var knife = other.gameObject.GetComponent<BzKnife>();
 			if (knife == null || !knife.enabled)
 				return;
-
+			
 			StartCoroutine(Slice(knife));
 		}
 
-		private IEnumerator Slice(BzKnife knife)
+		public IEnumerator Slice(BzKnife knife)
 		{
 			// The call from OnTriggerEnter, so some object positions are wrong.
 			// We have to wait for next frame to work with correct values
@@ -39,6 +39,7 @@ namespace BzKovSoft.ObjectSlicer.Samples
 
 			if (_sliceableAsync != null)
 			{
+				Debug.Log("test");
 				_sliceableAsync.Slice(plane, knife.SliceID, null);
 			}
 		}

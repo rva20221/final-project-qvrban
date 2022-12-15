@@ -9,6 +9,15 @@ namespace BzKovSoft.ObjectSlicer
 	{
 		protected override AdapterAndMesh GetAdapterAndMesh(Renderer renderer)
 		{
+			var skinnedRenderer = renderer as SkinnedMeshRenderer;
+			if (skinnedRenderer != null)
+			{
+				var result = new AdapterAndMesh();
+				result.mesh = skinnedRenderer.sharedMesh;
+				result.adapter = new BzSliceSkinnedMeshAdapter(skinnedRenderer);
+				return result;
+			}
+			
 			var meshRenderer = renderer as MeshRenderer;
 
 			if (meshRenderer != null)
