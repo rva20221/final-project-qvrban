@@ -32,13 +32,8 @@ namespace HintSystem
 
         private void UpdateUI(HintCollection hintCollection)
         {
-            hintPanel.SetCollection(hintCollection);
+            hintPanel.OpenHint(hintCollection);
         }
 
-        private void ShowHint(HintCollection hintCollection)
-        {
-            
-        }
-        
     }
 }

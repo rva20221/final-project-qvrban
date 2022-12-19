@@ -6,27 +6,14 @@ using UnityEngine;
 
 public class CutArea : MonoBehaviour
 {
-    public BzKnife bzKnife;
     public float cutDepth;
-    
-    private AreaKnifeSliceable baseArea;
     private bool isBeingCut;
 
     private Vector3 contactPoint;
-
-    private void Start()
-    {
-        baseArea = GetComponentInParent<AreaKnifeSliceable>();
-    }
+    
 
     private void OnTriggerEnter(Collider other)
     {
-        if (baseArea.bzKnife)
-        {
-            Debug.Log("Raise cut invalid error : Harus langsung ke valid area ,gabole lewat samping");
-            return; 
-        }
-
         var knife = other.gameObject.GetComponent<BzKnife>();
         if (knife == null || !knife.enabled)
             return;
@@ -35,8 +22,6 @@ public class CutArea : MonoBehaviour
         isBeingCut = true;
 
         Debug.Log("Trigger Cut Area Enter");
-        
-        bzKnife = knife;
     }
 
     private void OnTriggerStay(Collider other)
@@ -53,20 +38,12 @@ public class CutArea : MonoBehaviour
         if (distance > cutDepth)
         {
             isBeingCut = false;
-            StartCoroutine(baseArea.Slice(knife));
+            // Do cut animation here
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (baseArea.bzKnife)
-        {
-            Debug.Log("Raise cut invalid error : Lurus kebawah gaboleh kiri kanan cutnya");
-            isBeingCut = false;
-            bzKnife = null;
-            return; 
-        }
-        
         var knife = other.gameObject.GetComponent<BzKnife>();
         if (knife == null || !knife.enabled)
             return;
@@ -74,7 +51,5 @@ public class CutArea : MonoBehaviour
         isBeingCut = false;
 
         Debug.Log("Trigger Cut Area Exit");
-
-        bzKnife = null;
     }
 }

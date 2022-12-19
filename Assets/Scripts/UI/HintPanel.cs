@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class HintPanel : GUIObject
+    public class HintPanel : MonoBehaviour
     {
         #region Private Properties
         
@@ -19,22 +19,16 @@ namespace UI
         #endregion
 
         #region Public Methods
-
-        public void SetCollection(HintCollection hintCollection)
-        {
-            currentHintCollection = hintCollection;
-            _currentHintIndex = 0;
-            UpdateHintPanel(_currentHintIndex);
-        }
-
+        
         public void CloseHint()
         {
             gameObject.SetActive(false);
         }
 
-        public void OpenHint()
+        public void OpenHint(HintCollection hintCollection)
         {
             gameObject.SetActive(true);
+            SetCollection(hintCollection);
         }
 
         #endregion
@@ -57,6 +51,13 @@ namespace UI
         private void PreviousHint()
         {
             _currentHintIndex--;
+            UpdateHintPanel(_currentHintIndex);
+        }
+        
+        private void SetCollection(HintCollection hintCollection)
+        {
+            currentHintCollection = hintCollection;
+            _currentHintIndex = 0;
             UpdateHintPanel(_currentHintIndex);
         }
 
