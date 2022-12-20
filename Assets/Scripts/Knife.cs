@@ -11,6 +11,18 @@ public class Knife : MonoBehaviour
 
     private bool isReady;
     private bool isCutting;
+    
+    [SerializeField]
+    private Vector3 _origin = Vector3.down;
+    
+    public Vector3 Origin
+    {
+        get
+        {
+            Vector3 localShifted = transform.InverseTransformPoint(transform.position) + _origin;
+            return transform.TransformPoint(localShifted);
+        }
+    }
 
     private XRBaseController activeController;
     // Start is called before the first frame update

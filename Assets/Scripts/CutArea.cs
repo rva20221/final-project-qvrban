@@ -14,7 +14,7 @@ public class CutArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var knife = other.gameObject.GetComponent<BzKnife>();
+        var knife = other.gameObject.GetComponent<Knife>();
         if (knife == null || !knife.enabled)
             return;
 
@@ -28,7 +28,7 @@ public class CutArea : MonoBehaviour
     {
         if (!isBeingCut) return;
         
-        var knife = other.gameObject.GetComponent<BzKnife>();
+        var knife = other.gameObject.GetComponent<Knife>();
         if (knife == null || !knife.enabled)
             return;
 
@@ -44,7 +44,7 @@ public class CutArea : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        var knife = other.gameObject.GetComponent<BzKnife>();
+        var knife = other.gameObject.GetComponent<Knife>();
         if (knife == null || !knife.enabled)
             return;
 
