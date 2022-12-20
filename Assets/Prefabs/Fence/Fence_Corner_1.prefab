@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7336227877989788177}
   - component: {fileID: 5117650237059085195}
   - component: {fileID: 6964477514730608573}
+  - component: {fileID: -3331348058387703201}
+  - component: {fileID: 7754046997868127969}
   m_Layer: 0
   m_Name: Fence_Corner_1
   m_TagString: Untagged
@@ -83,3 +85,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-3331348058387703201
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7799201648537505938}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06771366, y: 0.4772507, z: 0.23811015}
+  m_Center: {x: -0.19853023, y: 0, z: 0}
+--- !u!65 &7754046997868127969
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7799201648537505938}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.41083577, y: 0.028740752, z: 0.23811015}
+  m_Center: {x: 0.04125087, y: -0.22425567, z: -1.4105072e-15}

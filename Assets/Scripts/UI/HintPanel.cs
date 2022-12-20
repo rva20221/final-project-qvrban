@@ -8,7 +8,8 @@ namespace UI
     public class HintPanel : MonoBehaviour
     {
         #region Private Properties
-        
+
+        [SerializeField] private TextMeshProUGUI headerField;
         [SerializeField] private TextMeshProUGUI textField;
         [SerializeField] private Button previousButton;
         [SerializeField] private Button nextButton;
