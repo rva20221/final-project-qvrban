@@ -1,3 +1,4 @@
+using System;
 using HintSystem;
 using TMPro;
 using UnityEngine;
@@ -64,8 +65,9 @@ namespace UI
 
         private void UpdateHintPanel(int index)
         {
-
-            textField.text = currentHintCollection.Hints[index].Text;
+            Hint hint = currentHintCollection.Hints[index];
+            textField.text = hint.Text;
+            headerField.text = hint.Header;
 
             bool isNextActive = true;
             bool isPreviousActive = true;
@@ -83,7 +85,6 @@ namespace UI
             nextButton.gameObject.SetActive(isNextActive);
             previousButton.gameObject.SetActive(isPreviousActive);
         }
-        
 
         #endregion
         

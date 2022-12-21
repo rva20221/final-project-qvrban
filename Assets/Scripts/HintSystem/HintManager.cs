@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UI;
 using UnityEngine;
@@ -35,5 +36,9 @@ namespace HintSystem
             hintPanel.OpenHint(hintCollection);
         }
 
+        private void OnDestroy()
+        {
+            hintCollections.Clear();
+        }
     }
 }

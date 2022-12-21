@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class Goat : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject NeckHighlight;
+    [SerializeField] private Collider[] invalidArea;
+
+    private void Start()
     {
-        
+        NeckHighlight.SetActive(false);
+        foreach (var invalidCollider in invalidArea)
+        {
+            invalidCollider.enabled = true;
+            if (invalidCollider.GetComponent<InvalidArea>() == null)
+            {
+                invalidCollider.gameObject.AddComponent<InvalidArea>();
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

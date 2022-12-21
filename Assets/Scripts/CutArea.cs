@@ -6,11 +6,17 @@ using UnityEngine;
 
 public class CutArea : MonoBehaviour
 {
-    public float cutDepth;
+    private float cutDepth;
     private bool isBeingCut;
 
     private Vector3 contactPoint;
-    
+    private float currentDistance = 0;
+
+    private void Start()
+    {
+        Bounds bounds = GetComponent<Collider>().bounds;
+        cutDepth = bounds.center.y - bounds.min.y;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -32,13 +38,14 @@ public class CutArea : MonoBehaviour
         if (knife == null || !knife.enabled)
             return;
 
-        float distance = Vector3.Distance(knife.Origin, contactPoint);
-        Debug.Log(distance);
+        currentDistance = Vector3.Distance(knife.Origin, contactPoint);
+        Debug.Log(currentDistance);
 
-        if (distance > cutDepth)
+        if (currentDistance >= cutDepth)
         {
             isBeingCut = false;
             // Do cut animation here
+            EventManager.TriggerEvent("onFinishCut");
         }
     }
 
@@ -47,8 +54,12 @@ public class CutArea : MonoBehaviour
         var knife = other.gameObject.GetComponent<Knife>();
         if (knife == null || !knife.enabled)
             return;
-
+        
         isBeingCut = false;
+        if (currentDistance < cutDepth)
+        {
+            // Try again
+        }
 
         Debug.Log("Trigger Cut Area Exit");
     }

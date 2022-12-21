@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class EventManager : MonoBehaviour
 {
-    private delegate void Hint();
     private Dictionary<string, UnityEvent> _events;
     private static EventManager _eventManager;
     
@@ -75,5 +74,10 @@ public class EventManager : MonoBehaviour
         {
             evt.Invoke();
         }
+    }
+
+    private void OnDestroy()
+    {
+        _events.Clear();
     }
 }
