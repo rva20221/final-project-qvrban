@@ -157,8 +157,7 @@ GameObject:
   - component: {fileID: 6529811369982981289}
   - component: {fileID: 6529811369982981292}
   - component: {fileID: 6529811369982981293}
-  - component: {fileID: 6529811369982981298}
-  - component: {fileID: 6529811369982981296}
+  - component: {fileID: 4305451131826608234}
   m_Layer: 7
   m_Name: Knife
   m_TagString: Untagged
@@ -340,29 +339,16 @@ MonoBehaviour:
   m_AddDefaultGrabTransformers: 1
   leftAttachTransform: {fileID: 2389439872253002856}
   rightAttachTransform: {fileID: 2389439871907409601}
---- !u!114 &6529811369982981298
+--- !u!114 &4305451131826608234
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5896720943292886546}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d23b366537b31b54197288f122deabeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _origin: {x: 0, y: -1, z: 0}
-  _direction: {x: 0, y: 1, z: 0}
---- !u!114 &6529811369982981296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5896720943292886546}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 232710269cefba64ba7187709dd3f68e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _origin: {x: 0, y: -1, z: 0}

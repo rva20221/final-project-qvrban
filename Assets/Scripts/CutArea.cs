@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using BzKovSoft.ObjectSlicer.Samples;
+using HintSystem;
 using UnityEngine;
 
 public class CutArea : MonoBehaviour
@@ -21,38 +22,42 @@ public class CutArea : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var knife = other.gameObject.GetComponent<Knife>();
-        if (knife == null || !knife.enabled)
+        if (knife == null || !knife.isReady || !enabled)
             return;
 
         contactPoint = knife.Origin;
         isBeingCut = true;
+
 
         Debug.Log("Trigger Cut Area Enter");
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (!isBeingCut) return;
+        if (!isBeingCut || !enabled) return;
         
         var knife = other.gameObject.GetComponent<Knife>();
-        if (knife == null || !knife.enabled)
+        if (knife == null || !knife.isReady)
             return;
+        
 
         currentDistance = Vector3.Distance(knife.Origin, contactPoint);
         Debug.Log(currentDistance);
-
+        
         if (currentDistance >= cutDepth)
         {
             isBeingCut = false;
-            // Do cut animation here
-            EventManager.TriggerEvent("onFinishCut");
+            EventManager.TriggerEvent("onQurbanSuccess");
+            EventManager.TriggerHintEvent("onFinishQurbanHint", new HintEventData(HintManager.TryGetHintCollection("QurbanSuccess")));
+            Debug.Log("Success Cut");
+            gameObject.SetActive(false);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         var knife = other.gameObject.GetComponent<Knife>();
-        if (knife == null || !knife.enabled)
+        if (knife == null || !knife.isReady || !enabled)
             return;
         
         isBeingCut = false;
@@ -63,4 +68,9 @@ public class CutArea : MonoBehaviour
 
         Debug.Log("Trigger Cut Area Exit");
     }
+
+    // private void DisableRenderer()
+    // {
+    //     GetComponentInParent<MeshRenderer>().enabled = false;
+    // }
 }

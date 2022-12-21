@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class Goat : MonoBehaviour
 {
-    [SerializeField] private GameObject NeckHighlight;
-    [SerializeField] private Collider[] invalidArea;
+    [SerializeField] private Collider[] invalidColliders;
 
     private void Start()
     {
-        NeckHighlight.SetActive(false);
-        foreach (var invalidCollider in invalidArea)
-        {
-            invalidCollider.enabled = true;
-            if (invalidCollider.GetComponent<InvalidArea>() == null)
-            {
-                invalidCollider.gameObject.AddComponent<InvalidArea>();
-            }
-        }
+        EventManager.AddListener("onQurbanSuccess", SuccessCut);
+        EventManager.AddListener("onQurbanFailed", FailCut);
     }
 
+    private void SuccessCut()
+    {
+        TurnOffScripts();
+        // Do Success cut anim here
+        Debug.Log("Success Cut");
+    }
+
+    private void FailCut()
+    {
+        TurnOffScripts();
+        Debug.Log("Fail Cut");
+    }
+
+    private void TurnOffScripts()
+    {
+        foreach (var invalidCollider in invalidColliders)
+        {
+            InvalidArea invalidArea = invalidCollider.GetComponent<InvalidArea>();
+            invalidArea.enabled = false;
+        }
+    }
 
 }

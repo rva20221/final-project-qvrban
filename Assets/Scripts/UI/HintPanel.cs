@@ -10,27 +10,39 @@ namespace UI
     {
         #region Private Properties
 
+        [SerializeField] private GameObject uiGameObject;
         [SerializeField] private TextMeshProUGUI headerField;
         [SerializeField] private TextMeshProUGUI textField;
         [SerializeField] private Button previousButton;
         [SerializeField] private Button nextButton;
-        
+
+        [SerializeField] private string eventTrigger;
+        [SerializeField] private bool isTriggeredByEvent;
+        private bool isEnableSequence;
+
         private HintCollection currentHintCollection;
         private int _currentHintIndex;
+
+
+        private bool isVisible;
         
         #endregion
+        
 
         #region Public Methods
-        
+
         public void CloseHint()
         {
-            gameObject.SetActive(false);
+            isVisible = false;
+            uiGameObject.SetActive(isVisible);
         }
 
         public void OpenHint(HintCollection hintCollection)
         {
-            gameObject.SetActive(true);
+            isVisible = true;
+            uiGameObject.SetActive(isVisible);
             SetCollection(hintCollection);
+            
         }
 
         #endregion
@@ -40,8 +52,12 @@ namespace UI
 
         private void Start()
         {
-            nextButton.onClick.AddListener(NextHint);
-            previousButton.onClick.AddListener(PreviousHint);
+            if (!isTriggeredByEvent) return;
+
+            EventManager.AddHintListener(eventTrigger, delegate(HintEventData hintEventData)
+            {
+                OpenHint(hintEventData.HintCollection);
+            });
         }
 
         private void NextHint()
@@ -60,14 +76,30 @@ namespace UI
         {
             currentHintCollection = hintCollection;
             _currentHintIndex = 0;
+            
+            isEnableSequence = currentHintCollection.Hints.Count > 1;
+            
+            if (isEnableSequence)
+            {
+                nextButton.onClick.AddListener(NextHint);
+                previousButton.onClick.AddListener(PreviousHint);
+            }
+            
             UpdateHintPanel(_currentHintIndex);
         }
 
         private void UpdateHintPanel(int index)
         {
+            if (!IsIndexValid(index))
+            {
+                return;
+            }
+            
             Hint hint = currentHintCollection.Hints[index];
             textField.text = hint.Text;
             headerField.text = hint.Header;
+            
+            if (!isEnableSequence) return;
 
             bool isNextActive = true;
             bool isPreviousActive = true;
@@ -81,9 +113,15 @@ namespace UI
             {
                 isPreviousActive = false;
             }
-   
+            
             nextButton.gameObject.SetActive(isNextActive);
             previousButton.gameObject.SetActive(isPreviousActive);
+        }
+
+        private bool IsIndexValid(int index)
+        {
+            int count = currentHintCollection.Hints.Count;
+            return index >= 0 || index < count;
         }
 
         #endregion

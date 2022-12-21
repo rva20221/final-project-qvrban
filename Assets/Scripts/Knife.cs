@@ -6,11 +6,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Knife : MonoBehaviour
 {
-    private BzKnife bzKnife;
-    private XRGrabInteractableTwoAttach interactableTwoAttach;
+    public bool isReady;
 
-    private bool isReady;
-    private bool isCutting;
+    private Vector3 _prevPos;
+    private Vector3 _pos;
     
     [SerializeField]
     private Vector3 _origin = Vector3.down;
@@ -23,17 +22,21 @@ public class Knife : MonoBehaviour
             return transform.TransformPoint(localShifted);
         }
     }
+    public Vector3 MoveDirection { get { return (_pos - _prevPos).normalized; } }
 
     private XRBaseController activeController;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        bzKnife = GetComponent<BzKnife>();
-        interactableTwoAttach = GetComponent<XRGrabInteractableTwoAttach>();
-        bzKnife.enabled = false;
         XRBaseInteractable interactable = GetComponent<XRBaseInteractable>();
         interactable.activated.AddListener(TriggerSliceEvent);
         interactable.deactivated.AddListener(StopSliceEvent);
+    }
+    
+    private void FixedUpdate()
+    {
+        _prevPos = _pos;
+        _pos = transform.position;
     }
 
     private void StopSliceEvent(BaseInteractionEventArgs eventArgs)
@@ -46,49 +49,35 @@ public class Knife : MonoBehaviour
 
     private void TriggerSliceEvent(BaseInteractionEventArgs eventArgs)
     {
+        
         if (eventArgs.interactorObject is XRBaseControllerInteractor controllerInteractor)
         {
+            
             TriggerSlice(controllerInteractor.xrController);
         }
     }
 
     private void TriggerSlice(XRBaseController controller)
     {
-        bzKnife.enabled = true;
         isReady = true;
         activeController = controller;
-        bzKnife.BeginNewSlice();
     }
 
     private void StopSlice(XRBaseController controller)
     {
-        bzKnife.enabled = false;
         isReady = false;
         activeController = null;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.GetComponent<CutArea>())
-        {
-            isCutting = true;
-        }
-    }
+    
 
     private void OnTriggerStay(Collider other)
     {
+        bool isCutAreaExists = other.GetComponent<CutArea>() && other.GetComponent<CutArea>().enabled;
         
-        if (isCutting && isReady)
+        if (isCutAreaExists && isReady)
         {
             activeController.SendHapticImpulse(0.5f, .1f);
         }
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<CutArea>())
-        {
-            isCutting = false;
-        }
-    }
+    
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UI;
 using UnityEngine;
 
@@ -7,35 +8,45 @@ namespace HintSystem
 {
     public class HintManager : MonoBehaviour
     {
-        [SerializeField] private HintPanel hintPanel;
-    
         [SerializeField] private List<HintCollection> hintCollections;
+        
+        private static HintManager _hintManager;
 
-        void Start()
+        public static HintManager instance
         {
-            RegisterCollectionEvents();
-        }
-
-        private void RegisterCollectionEvents()
-        {
-            if (hintCollections.Count == 0) return;
-
-            foreach (HintCollection hintCollection in hintCollections)
+            get
             {
-                EventManager.AddListener(hintCollection.EventName, delegate
+                if (!_hintManager)
                 {
-                    UpdateUI(hintCollection);
-                });
+                    _hintManager = FindObjectOfType<HintManager>();
+
+                    if (!_hintManager)
+                    {
+                        Debug.LogError("There needs to be one active EventManager script on a GameObject in your scene.");
+                    }
+                    else
+                    {
+                        _hintManager.Init();
+                    }
+                }
+
+                return _hintManager;
             }
-            
-            EventManager.TriggerEvent("onTest");
         }
 
-        private void UpdateUI(HintCollection hintCollection)
+        private void Init()
         {
-            hintPanel.OpenHint(hintCollection);
+            if (hintCollections == null)
+            {
+                hintCollections = new List<HintCollection>();
+            }
         }
 
+        public static HintCollection TryGetHintCollection(string id)
+        {
+            return instance.hintCollections.FirstOrDefault(x => x.CollectionId == id);
+        }
+        
         private void OnDestroy()
         {
             hintCollections.Clear();

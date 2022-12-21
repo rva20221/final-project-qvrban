@@ -7,7 +7,6 @@ namespace UI
     public class GUIObject : MonoBehaviour
     {
         [SerializeField] private Transform head;
-        [SerializeField] private float spawnDistance = 2;
 
         private Cylinder cylinder;
 
