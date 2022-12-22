@@ -1,5 +1,6 @@
 using System;
 using BzKovSoft.ObjectSlicer.Samples;
+using HintSystem;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -31,6 +32,10 @@ public class Knife : MonoBehaviour
         XRBaseInteractable interactable = GetComponent<XRBaseInteractable>();
         interactable.activated.AddListener(TriggerSliceEvent);
         interactable.deactivated.AddListener(StopSliceEvent);
+        interactable.selectEntered.AddListener(delegate(SelectEnterEventArgs eventArgs)
+        {
+            EventManager.TriggerHintEvent("onKnifeGrabbed", new HintEventData(HintManager.TryGetHintCollection("KnifeTutorial")));
+        });
     }
     
     private void FixedUpdate()

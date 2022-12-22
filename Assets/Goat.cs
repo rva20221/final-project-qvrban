@@ -6,6 +6,8 @@ public class Goat : MonoBehaviour
 {
     [SerializeField] private Collider[] invalidColliders;
 
+    [SerializeField] private BlendKeysAnimator[] animators;
+
     private void Start()
     {
         EventManager.AddListener("onQurbanSuccess", SuccessCut);
@@ -15,7 +17,10 @@ public class Goat : MonoBehaviour
     private void SuccessCut()
     {
         TurnOffScripts();
-        // Do Success cut anim here
+        foreach (var animator in animators)
+        {
+            StartCoroutine(animator.StartAnimation());
+        }
         Debug.Log("Success Cut");
     }
 
